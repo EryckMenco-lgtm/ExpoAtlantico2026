@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ExpoAtlántico 2026 – Vitrina Cultural · 15 de octubre · Plaza de la Paz, Barranquilla</title>
+
+  <!-- SEO -->
+  <meta name="description" content="ExpoAtlántico 2026 – Vitrina Cultural: tradiciones, gastronomía, artesanías y folclor de 7 municipios del Atlántico. 15 de octubre de 2026, Plaza de la Paz, Barranquilla. Proyecto formativo del SENA.">
+  <meta name="keywords" content="ExpoAtlántico, Atlántico, Barranquilla, cultura, carnaval, artesanías, SENA, Usiacurí, Galapa, Tubará, Baranoa, Piojó, Puerto Colombia, Juan de Acosta">
+  <meta name="author" content="ExpoAtlántico 2026 · SENA">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ExpoAtlántico 2026 – Vitrina Cultural">
+  <meta property="og:description" content="Raíces inteligentes: conectando tradición, cultura e innovación para el futuro. 15 de octubre de 2026 · Plaza de la Paz, Barranquilla.">
+  <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Baile_de_la_Cumbia_-_Barranquilla.jpg/1920px-Baile_de_la_Cumbia_-_Barranquilla.jpg">
+  <meta property="og:locale" content="es_CO">
+
+  <!-- Tipografías: Fraunces (display), Work Sans (cuerpo), IBM Plex Mono (utilitaria) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,600&family=Work+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='42' fill='%23C81D2E'/%3E%3Ccircle cx='50' cy='50' r='16' fill='%23E8A628'/%3E%3C/svg%3E">
+</head>
+<body>
+
+  <a class="skip-link" href="#evento">Saltar al contenido</a>
+
+  <!-- ══════════ NAVEGACIÓN "LIQUID GLASS" ══════════ -->
+  <nav class="nav-pill" id="navPill" aria-label="Navegación principal">
+    <a href="#inicio" class="nav-brand" data-navlink>
+      <svg class="nav-brand-sun" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="42" fill="#C81D2E"/><circle cx="50" cy="50" r="16" fill="#E8A628"/></svg>
+      <span>ExpoAtlántico<em>·26</em></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#inicio" data-navlink class="is-active">Inicio</a></li>
+      <li><a href="#evento" data-navlink>Evento</a></li>
+      <li><a href="#municipios" data-navlink>Municipios</a></li>
+      <li><a href="#programacion" data-navlink>Programación</a></li>
+      <li><a href="#galeria" data-navlink>Galería</a></li>
+      <li><a href="#contacto" data-navlink>Contacto</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Abrir menú">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ══════════ HERO ══════════ -->
+  <header class="hero" id="inicio">
+    <div class="hero-media" id="heroMedia" aria-hidden="true">
+      <!--
+        Video CC BY 3.0 · "Traditional Dancing in Colombia - Cumbia" (Wikimedia Commons, autor: MrPiettu).
+        Se reproduce como boomerang real: js/hero.js captura frames en un canvas offscreen
+        y los reproduce en ping-pong. En móvil / sin soporte webm / reduced-motion se usa
+        la imagen estática con Ken Burns (menos datos y CPU en pantallas táctiles).
+      -->
+      <img class="hero-fallback" id="heroFallback"
+           src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Baile_de_la_Cumbia_-_Barranquilla.jpg/1920px-Baile_de_la_Cumbia_-_Barranquilla.jpg"
+           alt="" fetchpriority="high">
+      <video id="heroVideo" muted playsinline preload="none" crossorigin="anonymous" tabindex="-1"></video>
+      <canvas id="heroCanvas"></canvas>
+      <div class="hero-veil"></div>
+      <svg class="hero-mask-motif" viewBox="0 0 240 300" aria-hidden="true">
+        <!-- Motivo propio inspirado en las máscaras talladas de Galapa -->
+        <path d="M120 10 C60 10 30 60 30 130 C30 220 70 290 120 290 C170 290 210 220 210 130 C210 60 180 10 120 10 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+        <path d="M62 110 L102 96 L102 122 L62 130 Z M178 110 L138 96 L138 122 L178 130 Z" fill="currentColor"/>
+        <path d="M120 120 L104 178 L136 178 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+        <path d="M84 216 C100 236 140 236 156 216" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+        <path d="M120 10 L120 -30 M90 16 L74 -18 M150 16 L166 -18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="hero-inner">
+      <p class="hero-kicker fade-item"><span class="kicker-dot" aria-hidden="true"></span>Vitrina Cultural · Proyecto formativo SENA</p>
+      <h1 class="hero-title fade-item">ExpoAtlántico <span class="hero-year">2026</span></h1>
+      <p class="hero-slogan fade-item">«Raíces inteligentes: conectando tradición, cultura e&nbsp;innovación para el futuro.»</p>
+      <p class="hero-welcome fade-item">Bienvenidos a ExpoAtlántico 2026, una vitrina cultural que reúne las tradiciones, la gastronomía, las artesanías y las expresiones folclóricas más representativas de los municipios del Atlántico. Este evento busca fortalecer la identidad regional y brindar a los visitantes una experiencia cultural única.</p>
+    </div>
+
+    <div class="hero-bottom fade-item">
+      <p class="hero-bottom-left">Un espacio para que las expresiones del Atlántico sean conocidas y valoradas por toda la comunidad.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="#programacion">Ver programación</a>
+        <a class="btn btn-glass" href="#contacto">Cómo llegar</a>
+      </div>
+      <p class="hero-bottom-right mono">15 · OCT · 2026<br>Plaza de la Paz, Barranquilla</p>
+    </div>
+
+    <div class="hero-scrollcue fade-item" aria-hidden="true"><span></span></div>
+  </header>
+
+  <!-- ══════════ CINTA DE MUNICIPIOS ══════════ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Juan de Acosta</span><i class="cayena"></i><span>Puerto Colombia</span><i class="cayena"></i><span>Usiacurí</span><i class="cayena"></i><span>Galapa</span><i class="cayena"></i><span>Piojó</span><i class="cayena"></i><span>Baranoa</span><i class="cayena"></i><span>Tubará</span><i class="cayena"></i>
+      <span>Juan de Acosta</span><i class="cayena"></i><span>Puerto Colombia</span><i class="cayena"></i><span>Usiacurí</span><i class="cayena"></i><span>Galapa</span><i class="cayena"></i><span>Piojó</span><i class="cayena"></i><span>Baranoa</span><i class="cayena"></i><span>Tubará</span><i class="cayena"></i>
+    </div>
+  </div>
+
+  <main>
+
+  <!-- ══════════ EL EVENTO ══════════ -->
+  <section class="section section-evento" id="evento">
+    <div class="wrap">
+      <p class="eyebrow reveal">El evento</p>
+      <h2 class="section-title reveal">Una vitrina para el patrimonio <em>vivo</em> del Atlántico</h2>
+
+      <div class="evento-grid">
+        <article class="evento-col reveal">
+          <h3 class="evento-sub"><span class="sub-mark sub-mark--rojo" aria-hidden="true"></span>¿Por qué nace?</h3>
+          <p>El departamento del Atlántico posee una gran riqueza cultural reflejada en sus artesanías, danzas, tradiciones y manifestaciones folclóricas. Sin embargo, muchas de estas expresiones no cuentan con suficientes espacios para ser conocidas y valoradas por la comunidad.</p>
+          <p>Por ello nace ExpoAtlántico 2026, un proyecto formativo del SENA que busca promover el patrimonio cultural del departamento, fortaleciendo la identidad regional y permitiendo que los aprendices desarrollen competencias en organización de eventos, logística, relaciones públicas y gestión cultural.</p>
+        </article>
+        <article class="evento-col reveal">
+          <h3 class="evento-sub"><span class="sub-mark sub-mark--dorado" aria-hidden="true"></span>¿Qué es?</h3>
+          <p>ExpoAtlántico 2026 es una vitrina cultural diseñada para resaltar la riqueza histórica, artística y tradicional de diferentes municipios del Atlántico.</p>
+          <p>Durante el evento, los asistentes podrán disfrutar de exposiciones artesanales, presentaciones folclóricas, muestras gastronómicas, charlas turísticas y una zona interactiva que permitirá vivir de cerca la cultura del departamento.</p>
+        </article>
+      </div>
+
+      <div class="stats reveal" aria-label="Cifras del evento">
+        <div class="stat"><span class="stat-num mono" data-count="7">0</span><span class="stat-label">municipios en escena</span></div>
+        <div class="stat"><span class="stat-num mono" data-count="12">0</span><span class="stat-label">momentos en agenda</span></div>
+        <div class="stat"><span class="stat-num mono">15<small>·10</small></span><span class="stat-label">un día para vivirlo todo</span></div>
+      </div>
+
+      <div class="objetivo-banda reveal">
+        <svg class="banda-icono" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4 C14 12 10 20 10 28 a14 14 0 0 0 28 0 C38 20 34 12 24 4 Z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M24 16 v18 M17 24 c2 4 12 4 14 0" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <div>
+          <h3 class="evento-sub evento-sub--claro">Objetivo general</h3>
+          <p class="objetivo-texto">Promover y difundir las tradiciones culturales y artísticas de los municipios del Atlántico mediante un espacio de integración que fortalezca la identidad regional y el reconocimiento del patrimonio cultural.</p>
+        </div>
+      </div>
+
+      <h3 class="evento-sub reveal" style="margin-top:3.5rem"><span class="sub-mark sub-mark--verde" aria-hidden="true"></span>Objetivos específicos</h3>
+      <ul class="objetivos-lista reveal-group">
+        <li class="reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="21" cy="21" r="12" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M30 30 L41 41" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+          <p>Investigar las principales expresiones culturales de los municipios participantes.</p>
+        </li>
+        <li class="reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M16 24 a8 8 0 1 1 8 8 M32 24 a8 8 0 1 0 -8 -8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+          <p>Gestionar recursos y alianzas para el desarrollo del evento.</p>
+        </li>
+        <li class="reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="10" width="32" height="30" rx="4" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M8 20 h32 M16 6 v8 M32 6 v8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+          <p>Planificar la logística integral de la vitrina cultural.</p>
+        </li>
+        <li class="reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 8 v24 M24 32 c0 6 -5 8 -10 8 M24 20 c6 0 10 -3 10 -9 l-10 3" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="14" cy="40" r="4" fill="currentColor"/></svg>
+          <p>Coordinar las presentaciones artísticas y las muestras artesanales.</p>
+        </li>
+        <li class="reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 20 L30 10 v28 L8 28 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M34 18 c4 2 4 10 0 12 M38 14 c7 4 7 16 0 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+          <p>Implementar estrategias de comunicación y promoción del evento.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════ MUNICIPIOS · MAPA-RUTA (elemento firma) ══════════ -->
+  <section class="section section-municipios" id="municipios">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--claro reveal">Municipios participantes</p>
+      <h2 class="section-title section-title--claro reveal">La Ruta de la <em>Tradición</em></h2>
+      <p class="section-lede section-lede--claro reveal">Siete municipios, un solo recorrido: del mar a la sabana, cada parada exhibirá sus artesanías, su gastronomía, sus tradiciones y sus expresiones culturales. Toca cada punto de la ruta para descubrir qué trae a la vitrina.</p>
+
+      <div class="ruta-layout">
+        <div class="ruta-mapa reveal" id="rutaMapa">
+          <svg class="ruta-svg" viewBox="0 0 100 110" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <!-- Línea de costa estilizada -->
+            <path class="ruta-costa" d="M2 34 C14 26 26 22 38 14 C50 6 58 6 66 3" fill="none"/>
+            <path class="ruta-olas" d="M4 26 c3 -2 6 -2 9 0 M16 19 c3 -2 6 -2 9 0 M30 12 c3 -2 6 -2 9 0" fill="none"/>
+            <!-- Recorrido de la ruta -->
+            <path class="ruta-path" id="rutaPath"
+              d="M62 12 C56 18 52 22 48 30 C43 39 38 40 30 44 C22 48 18 54 18 64 C18 76 28 82 42 80 C56 78 60 70 62 62 C64 54 68 44 76 38 C82 33 84 24 82 14"
+              fill="none"/>
+            <!-- Estrella final: Barranquilla -->
+            <g class="ruta-bq" transform="translate(82,14)">
+              <path d="M0 -4.5 L1.3 -1.4 L4.5 -1.2 L2 1 L2.8 4.2 L0 2.4 L-2.8 4.2 L-2 1 L-4.5 -1.2 L-1.3 -1.4 Z"/>
+            </g>
+            <text class="ruta-bq-label" x="82" y="7.5" text-anchor="middle">Barranquilla · Plaza de la Paz</text>
+          </svg>
+          <!-- Nodos accesibles (botones HTML posicionados sobre el SVG) -->
+          <button class="ruta-nodo" style="--x:62%;--y:10.9%" data-muni="puerto-colombia" aria-pressed="true"><span class="nodo-punto"></span><span class="nodo-nombre">Puerto Colombia</span></button>
+          <button class="ruta-nodo" style="--x:48%;--y:27.2%" data-muni="tubara" aria-pressed="false"><span class="nodo-punto"></span><span class="nodo-nombre">Tubará</span></button>
+          <button class="ruta-nodo" style="--x:30%;--y:40%" data-muni="juan-de-acosta" aria-pressed="false"><span class="nodo-punto"></span><span class="nodo-nombre">Juan de Acosta</span></button>
+          <button class="ruta-nodo" style="--x:18%;--y:58.1%" data-muni="piojo" aria-pressed="false"><span class="nodo-punto"></span><span class="nodo-nombre">Piojó</span></button>
+          <button class="ruta-nodo" style="--x:42%;--y:72.7%" data-muni="usiacuri" aria-pressed="false"><span class="nodo-punto"></span><span class="nodo-nombre">Usiacurí</span></button>
+          <button class="ruta-nodo" style="--x:62%;--y:56.3%" data-muni="baranoa" aria-pressed="false"><span class="nodo-punto"></span><span class="nodo-nombre">Baranoa</span></button>
+          <button class="ruta-nodo" style="--x:76%;--y:34.5%" data-muni="galapa" aria-pressed="false"><span class="nodo-punto"></span><span class="nodo-nombre">Galapa</span></button>
+        </div>
+
+        <!-- Tarjeta glass del municipio activo (contenido inyectado por js/main.js) -->
+        <aside class="ruta-card glass-card reveal" id="rutaCard" aria-live="polite">
+          <div class="ruta-card-media"><img id="rutaCardImg" src="" alt="" loading="lazy"></div>
+          <div class="ruta-card-body">
+            <p class="ruta-card-orden mono" id="rutaCardOrden">Parada 01 / 07</p>
+            <h3 class="ruta-card-titulo" id="rutaCardTitulo"></h3>
+            <p class="ruta-card-dato" id="rutaCardDato"></p>
+            <ul class="ruta-card-chips" id="rutaCardChips"></ul>
+          </div>
+        </aside>
+      </div>
+      <p class="ruta-nota mono reveal">✦ El Carnaval del Atlántico conecta sus municipios con la «Ruta de la Tradición»; esta vitrina recorre siete de sus paradas.</p>
+    </div>
+  </section>
+
+  <!-- ══════════ PROGRAMACIÓN ══════════ -->
+  <section class="section section-programacion" id="programacion">
+    <div class="wrap wrap--angosto">
+      <p class="eyebrow reveal">Programación · 15 de octubre de 2026</p>
+      <h2 class="section-title reveal">Un día con <em>sabor</em> a Atlántico</h2>
+      <p class="section-lede reveal">Todos los momentos ocurren en la Plaza de la Paz, Barranquilla. Entrada libre.</p>
+
+      <ol class="timeline">
+        <li class="tl-item reveal"><span class="tl-hora mono">8:30 a.m.</span><div class="tl-body"><h3>Registro de asistentes</h3></div></li>
+        <li class="tl-item reveal"><span class="tl-hora mono">9:00 a.m.</span><div class="tl-body"><h3>Bienvenida</h3></div></li>
+        <li class="tl-item tl-item--destacado reveal"><span class="tl-hora mono">9:15 a.m.</span><div class="tl-body"><h3>Conversatorio</h3><p>«Raíces inteligentes: conectando tradición, cultura e innovación para el futuro»</p></div></li>
+        <li class="tl-item reveal"><span class="tl-hora mono">10:15 a.m.</span><div class="tl-body"><h3>Zona interactiva</h3><p>Rumba terapia, talleres, juegos y vitrinas</p></div></li>
+        <li class="tl-item reveal"><span class="tl-hora mono">11:15 a.m.</span><div class="tl-body"><h3>Show de cocina</h3></div></li>
+        <li class="tl-item reveal"><span class="tl-hora mono">12:00 p.m.</span><div class="tl-body"><h3>Almuerzo</h3></div></li>
+        <li class="tl-item reveal"><span class="tl-hora mono">1:00 p.m.</span><div class="tl-body"><h3>Charla «Selva Africana»</h3></div></li>
+        <li class="tl-item reveal"><span class="tl-hora mono">1:40 p.m.</span><div class="tl-body"><h3>Presentación de Polonuevo</h3></div></li>
+        <li class="tl-item reveal"><span class="tl-hora mono">2:10 p.m.</span><div class="tl-body"><h3>Intermedio</h3></div></li>
+        <li class="tl-item reveal"><span class="tl-hora mono">3:00 p.m.</span><div class="tl-body"><h3>Tesoros del Atlántico</h3></div></li>
+        <li class="tl-item tl-item--destacado reveal"><span class="tl-hora mono">3:20 p.m.</span><div class="tl-body"><h3>Muestra folclórica</h3></div></li>
+        <li class="tl-item reveal"><span class="tl-hora mono">3:50 p.m.</span><div class="tl-body"><h3>Cierre</h3></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ══════════ QUÉ ENCONTRARÁS ══════════ -->
+  <section class="section section-encontraras" aria-labelledby="encontrarasTitulo">
+    <div class="wrap">
+      <p class="eyebrow reveal">Experiencias</p>
+      <h2 class="section-title reveal" id="encontrarasTitulo">¿Qué encontrarás en <em>ExpoAtlántico</em>?</h2>
+      <ul class="encontraras-grid reveal-group">
+        <li class="exp-card reveal"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6 C16 6 12 12 12 22 C12 34 17 42 24 42 C31 42 36 34 36 22 C36 12 32 6 24 6 Z" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M17 20 l6 -2 v4 l-6 1 Z M31 20 l-6 -2 v4 l6 1 Z" fill="currentColor"/><path d="M19 32 c3 3 7 3 10 0" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><h3>Exposición de artesanías</h3></li>
+        <li class="exp-card reveal"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 8 a4 4 0 1 0 0.01 0 M24 16 v12 M24 22 l-9 6 M24 22 l9 6 M24 28 l-6 12 M24 28 l6 12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><h3>Danzas folclóricas</h3></li>
+        <li class="exp-card reveal"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 28 h32 a16 16 0 0 1 -32 0 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M16 22 c0 -4 3 -4 3 -8 M24 22 c0 -4 3 -4 3 -8 M32 22 c0 -4 3 -4 3 -8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><h3>Muestra gastronómica</h3></li>
+        <li class="exp-card reveal"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 12 h24 v16 h-14 l-6 6 v-6 h-4 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M36 20 h4 v14 h-4 v5 l-5 -5 h-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></svg><h3>Conversatorios culturales</h3></li>
+        <li class="exp-card reveal"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="16" width="36" height="18" rx="9" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M15 22 v6 M12 25 h6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="31" cy="23" r="1.8" fill="currentColor"/><circle cx="36" cy="27" r="1.8" fill="currentColor"/></svg><h3>Zona interactiva: juegos y talleres</h3></li>
+        <li class="exp-card reveal"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 42 C24 42 9 28 9 18 a15 15 0 0 1 30 0 C39 28 24 42 24 42 Z" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="24" cy="18" r="5" fill="none" stroke="currentColor" stroke-width="2.4"/></svg><h3>Charlas turísticas</h3></li>
+        <li class="exp-card reveal"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 8 h22 a6 6 0 0 1 6 6 v26 H16 a6 6 0 0 1 -6 -6 Z" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M38 34 H16 a6 6 0 0 0 -6 6 M17 16 h14 M17 23 h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><h3>Historia y tradiciones del Atlántico</h3></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════ GALERÍA ══════════ -->
+  <section class="section section-galeria" id="galeria">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--claro reveal">Galería</p>
+      <h2 class="section-title section-title--claro reveal">El Atlántico en <em>imágenes</em></h2>
+      <p class="section-lede section-lede--claro reveal">Fotografías reales del Carnaval, las artesanías, la gastronomía y los municipios que estarán en la vitrina.</p>
+
+      <div class="masonry reveal-group">
+        <figure class="masonry-item reveal"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Baile_de_la_Cumbia_-_Barranquilla.jpg/1920px-Baile_de_la_Cumbia_-_Barranquilla.jpg" alt="Pareja bailando cumbia con vestuario tradicional en Barranquilla"><figcaption>Cumbia · Barranquilla</figcaption></figure>
+        <figure class="masonry-item reveal"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Mascarasgalapa.jpg/1280px-Mascarasgalapa.jpg" alt="Máscaras de carnaval talladas en madera de ceiba roja, artesanía de Galapa"><figcaption>Máscaras talladas · Galapa</figcaption></figure>
+        <figure class="masonry-item reveal"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/3/39/Congos_carnaval_de_Barranquilla2024-02-14.jpg" alt="Danzantes del Congo con turbantes coloridos en el Carnaval de Barranquilla"><figcaption>Danza del Congo · Carnaval</figcaption></figure>
+        <figure class="masonry-item reveal"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Musa_Tejedora.jpg/1280px-Musa_Tejedora.jpg" alt="Escultura de la Musa Tejedora, homenaje al tejido en palma de iraca de Usiacurí"><figcaption>Musa Tejedora · Usiacurí</figcaption></figure>
+        <figure class="masonry-item reveal"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Garabato_Carnaval_de_Barranquilla.jpg/1920px-Garabato_Carnaval_de_Barranquilla.jpg" alt="Danzante del Garabato con capa decorada en el Carnaval de Barranquilla"><figcaption>Garabato · Carnaval</figcaption></figure>
+        <figure class="masonry-item reveal"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Carima%C3%B1olas_empanadas_arepas_de_huevo.jpg/1920px-Carima%C3%B1olas_empanadas_arepas_de_huevo.jpg" alt="Carimañolas, empanadas y arepas de huevo, fritos típicos del Caribe colombiano"><figcaption>Fritos costeños · Gastronomía</figcaption></figure>
+        <figure class="masonry-item reveal"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Atardecer_en_el_Muelle_de_Puerto_Colombia.JPG/1280px-Atardecer_en_el_Muelle_de_Puerto_Colombia.JPG" alt="Atardecer sobre el muelle histórico de Puerto Colombia"><figcaption>Muelle histórico · Puerto Colombia</figcaption></figure>
+        <figure class="masonry-item reveal"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Danza_de_los_Indios.JPG/1280px-Danza_de_los_Indios.JPG" alt="Vestuario de la Danza de los Indios del Carnaval de Barranquilla"><figcaption>Danza de los Indios · Carnaval</figcaption></figure>
+        <figure class="masonry-item reveal"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/El_mural_m%C3%A1s_grande.jpg/1280px-El_mural_m%C3%A1s_grande.jpg" alt="Mural artístico de gran formato en las calles de Usiacurí"><figcaption>Murales · Usiacurí</figcaption></figure>
+        <figure class="masonry-item reveal"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/7/75/MiradorTubar%C3%A1.jpg" alt="Mirador de Tubará con vista hacia el mar Caribe"><figcaption>Mirador · Tubará</figcaption></figure>
+        <figure class="masonry-item reveal"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Sancocho_de_guand%C3%BA_con_carne_sal%C3%A1.JPG" alt="Sancocho de guandú con carne salá, plato insignia del Atlántico"><figcaption>Sancocho de guandú · Gastronomía</figcaption></figure>
+        <figure class="masonry-item reveal"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Negrita_Puloy.jpg/1280px-Negrita_Puloy.jpg" alt="Disfraz de la Negrita Puloy, personaje tradicional del Carnaval de Barranquilla"><figcaption>Negrita Puloy · Carnaval</figcaption></figure>
+        <figure class="masonry-item reveal"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Plaza_de_Baranoa.jpg/1280px-Plaza_de_Baranoa.jpg" alt="Plaza principal de Baranoa con su iglesia de Santa Ana"><figcaption>Plaza principal · Baranoa</figcaption></figure>
+        <figure class="masonry-item reveal"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Plaza_de_la_Paz_y_catedral_Barranquilla.jpg/1280px-Plaza_de_la_Paz_y_catedral_Barranquilla.jpg" alt="Plaza de la Paz y Catedral Metropolitana de Barranquilla, sede del evento"><figcaption>Plaza de la Paz · Sede del evento</figcaption></figure>
+      </div>
+      <p class="galeria-credito mono reveal">Fotografías: Wikimedia Commons · licencias Creative Commons. Serán reemplazadas por el registro oficial del evento.</p>
+    </div>
+  </section>
+
+  <!-- ══════════ ALIADOS ══════════ -->
+  <section class="section section-aliados" aria-labelledby="aliadosTitulo">
+    <div class="wrap">
+      <p class="eyebrow reveal">Patrocinadores y aliados</p>
+      <h2 class="section-title reveal" id="aliadosTitulo">Quienes hacen posible la <em>vitrina</em></h2>
+      <div class="aliados-grid reveal-group">
+        <div class="aliado reveal">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Logosimbolo_SENA_2022.svg/960px-Logosimbolo_SENA_2022.svg.png" alt="Logo del SENA — Servicio Nacional de Aprendizaje" loading="lazy">
+        </div>
+        <!-- Placeholders: reemplazar cada bloque por el <img> del logo real del aliado -->
+        <div class="aliado aliado--placeholder reveal"><span>Logo aliado</span></div>
+        <div class="aliado aliado--placeholder reveal"><span>Logo aliado</span></div>
+        <div class="aliado aliado--placeholder reveal"><span>Logo aliado</span></div>
+        <div class="aliado aliado--placeholder reveal"><span>Logo aliado</span></div>
+        <div class="aliado aliado--placeholder reveal"><span>Logo aliado</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ CONTACTO ══════════ -->
+  <section class="section section-contacto" id="contacto">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--claro reveal">Contacto</p>
+      <h2 class="section-title section-title--claro reveal">Nos vemos en la <em>Plaza de la Paz</em></h2>
+
+      <div class="contacto-grid">
+        <div class="contacto-info reveal">
+          <p class="contacto-fecha mono">15 · OCTUBRE · 2026<br>Plaza de la Paz, Barranquilla, Atlántico</p>
+          <ul class="contacto-lista">
+            <li>
+              <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="12" width="36" height="26" rx="4" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M8 15 L24 27 L40 15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <a id="contactoEmail" href="#">expoatlantico2026@gmail.com</a>
+            </li>
+            <li>
+              <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="10" width="28" height="28" rx="8" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="24" cy="24" r="7" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="33" cy="15" r="2" fill="currentColor"/></svg>
+              <a href="https://instagram.com/expoatlantico2026" target="_blank" rel="noopener">@expoatlantico2026</a>
+            </li>
+            <li>
+              <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="17" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M28 15 h-4 a5 5 0 0 0 -5 5 v21 M16 25 h11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+              <span>ExpoAtlántico 2026</span>
+            </li>
+          </ul>
+          <a class="btn btn-solid" href="https://www.google.com/maps/search/?api=1&query=Plaza+de+la+Paz+Barranquilla" target="_blank" rel="noopener">Cómo llegar</a>
+        </div>
+        <div class="contacto-mapa reveal">
+          <iframe title="Mapa de la Plaza de la Paz, Barranquilla"
+                  src="https://www.google.com/maps?q=Plaza%20de%20la%20Paz%2C%20Barranquilla%2C%20Atl%C3%A1ntico&output=embed"
+                  loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <p class="footer-marca">ExpoAtlántico <em>2026</em> · Vitrina Cultural</p>
+      <p class="footer-slogan">«Raíces inteligentes: conectando tradición, cultura e innovación para el futuro.»</p>
+      <p class="footer-legal mono">Proyecto formativo del SENA · © 2026 · Fotografías y video: Wikimedia Commons (CC BY / CC BY-SA)</p>
+    </div>
+  </footer>
+
+  <script src="js/hero.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
