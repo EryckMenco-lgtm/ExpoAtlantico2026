@@ -8,14 +8,20 @@
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ── Correo de contacto ──────────────────────────────────────
-     Reemplazar por el correo oficial del proyecto cuando exista. */
+  /* ── Configuración editable ──────────────────────────────────
+     CONTACT_EMAIL : reemplazar por el correo oficial del proyecto.
+     REGISTRO_URL  : pegar el enlace del Google Form de registro
+                     (mientras esté vacío, el botón dirá "muy pronto").
+     SITE_URL      : URL pública de la página cuando se publique
+                     (se añade al mensaje de WhatsApp).              */
   var CONTACT_EMAIL = "expoatlantico2026@gmail.com";
-  var emailLink = document.getElementById("contactoEmail");
-  if (emailLink) {
-    emailLink.textContent = CONTACT_EMAIL;
-    emailLink.href = "mailto:" + CONTACT_EMAIL;
-  }
+  var REGISTRO_URL = "";
+  var SITE_URL = "";
+
+  document.querySelectorAll("[data-email]").forEach(function (el) {
+    el.textContent = CONTACT_EMAIL;
+    el.href = "mailto:" + CONTACT_EMAIL;
+  });
 
   /* ══════════ DATOS REALES DE LOS MUNICIPIOS (verificados) ══════════ */
   var MUNICIPIOS = {
@@ -227,5 +233,150 @@
     contadores.forEach(function (el) { ioNum.observe(el); });
   } else {
     contadores.forEach(function (el) { el.textContent = el.dataset.count; });
+  }
+
+  /* ══════════ CUENTA REGRESIVA ══════════ */
+  var FECHA_EVENTO = new Date("2026-10-15T08:30:00-05:00"); // hora de Colombia
+  var cuenta = document.getElementById("cuenta");
+  if (cuenta) {
+    var cDias = document.getElementById("cDias");
+    var cHoras = document.getElementById("cHoras");
+    var cMin = document.getElementById("cMin");
+    var cSeg = document.getElementById("cSeg");
+    var dosDig = function (n) { return n < 10 ? "0" + n : "" + n; };
+    var intv = setInterval(tic, 1000);
+    tic();
+
+    function tic() {
+      var diff = FECHA_EVENTO - Date.now();
+      if (diff <= 0) {
+        clearInterval(intv);
+        cuenta.innerHTML = '<p class="cuenta-hoy">¡Hoy es el gran día! Nos vemos en la Plaza de la Paz.</p>';
+        return;
+      }
+      var s = Math.floor(diff / 1000);
+      cDias.textContent = Math.floor(s / 86400);
+      cHoras.textContent = dosDig(Math.floor(s / 3600) % 24);
+      cMin.textContent = dosDig(Math.floor(s / 60) % 60);
+      cSeg.textContent = dosDig(s % 60);
+    }
+  }
+
+  /* ══════════ AGREGAR AL CALENDARIO (.ics) ══════════ */
+  var btnCal = document.getElementById("btnCalendario");
+  if (btnCal) {
+    btnCal.addEventListener("click", function () {
+      /* 8:30 a.m. – 4:00 p.m. hora de Colombia (UTC-5) → en UTC */
+      var ics = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//ExpoAtlantico 2026//ES",
+        "BEGIN:VEVENT",
+        "UID:expoatlantico-2026-vitrina@expoatlantico",
+        "DTSTAMP:20260712T120000Z",
+        "DTSTART:20261015T133000Z",
+        "DTEND:20261015T210000Z",
+        "SUMMARY:ExpoAtlántico 2026 – Vitrina Cultural",
+        "LOCATION:Plaza de la Paz\\, Barranquilla\\, Atlántico",
+        "DESCRIPTION:Raíces inteligentes: conectando tradición\\, cultura e innovación para el futuro. Registro desde las 8:30 a.m. Entrada libre.",
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ].join("\r\n");
+      var blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "ExpoAtlantico2026.ics";
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 400);
+    });
+  }
+
+  /* ══════════ REGISTRO DE ASISTENTES ══════════ */
+  var btnReg = document.getElementById("btnRegistro");
+  if (btnReg) {
+    if (REGISTRO_URL) {
+      btnReg.href = REGISTRO_URL;
+      btnReg.target = "_blank";
+      btnReg.rel = "noopener";
+    } else {
+      btnReg.textContent = "Registro · muy pronto";
+      btnReg.setAttribute("aria-disabled", "true");
+      btnReg.addEventListener("click", function (e) { e.preventDefault(); });
+    }
+  }
+
+  /* ══════════ COMPARTIR POR WHATSAPP ══════════ */
+  var wa = document.getElementById("waShare");
+  if (wa) {
+    var waTxt = "🎭 ExpoAtlántico 2026 – Vitrina Cultural\n" +
+      "📅 15 de octubre de 2026 · desde las 8:30 a.m.\n" +
+      "📍 Plaza de la Paz, Barranquilla\n" +
+      "«Raíces inteligentes: conectando tradición, cultura e innovación para el futuro.»\n" +
+      "¡Acompáñanos! Entrada libre." +
+      (SITE_URL ? "\n" + SITE_URL : "");
+    wa.href = "https://wa.me/?text=" + encodeURIComponent(waTxt);
+  }
+
+  /* ══════════ LIGHTBOX DE LA GALERÍA ══════════ */
+  var fotos = Array.prototype.slice.call(document.querySelectorAll(".masonry-item"));
+  var lb = document.getElementById("lightbox");
+  if (lb && fotos.length) {
+    var lbImg = document.getElementById("lbImg");
+    var lbCaption = document.getElementById("lbCaption");
+    var lbCerrar = document.getElementById("lbCerrar");
+    var lbPrev = document.getElementById("lbPrev");
+    var lbNext = document.getElementById("lbNext");
+    var idx = 0;
+
+    var abrir = function (i) {
+      idx = (i + fotos.length) % fotos.length;
+      var img = fotos[idx].querySelector("img");
+      var cap = fotos[idx].querySelector("figcaption");
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lbCaption.textContent = cap ? cap.textContent : img.alt;
+      lb.hidden = false;
+      document.body.style.overflow = "hidden";
+      lbCerrar.focus();
+    };
+    var cerrar = function () {
+      lb.hidden = true;
+      document.body.style.overflow = "";
+    };
+
+    fotos.forEach(function (f, i) {
+      f.tabIndex = 0;
+      f.setAttribute("role", "button");
+      var img = f.querySelector("img");
+      f.setAttribute("aria-label", "Ampliar fotografía: " + (img ? img.alt : ""));
+      f.addEventListener("click", function () { abrir(i); });
+      f.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); abrir(i); }
+      });
+    });
+
+    lbCerrar.addEventListener("click", cerrar);
+    lbPrev.addEventListener("click", function () { abrir(idx - 1); });
+    lbNext.addEventListener("click", function () { abrir(idx + 1); });
+    lb.addEventListener("click", function (e) { if (e.target === lb) cerrar(); });
+
+    document.addEventListener("keydown", function (e) {
+      if (lb.hidden) return;
+      if (e.key === "Escape") cerrar();
+      if (e.key === "ArrowLeft") abrir(idx - 1);
+      if (e.key === "ArrowRight") abrir(idx + 1);
+    });
+
+    /* Deslizar en táctil para cambiar de foto */
+    var x0 = null;
+    lb.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener("touchend", function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      if (dx > 45) abrir(idx - 1);
+      else if (dx < -45) abrir(idx + 1);
+      x0 = null;
+    }, { passive: true });
   }
 })();

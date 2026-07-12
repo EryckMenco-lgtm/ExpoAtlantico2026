@@ -54,8 +54,9 @@
       <!--
         Video CC BY 3.0 · "Traditional Dancing in Colombia - Cumbia" (Wikimedia Commons, autor: MrPiettu).
         Se reproduce como boomerang real: js/hero.js captura frames en un canvas offscreen
-        y los reproduce en ping-pong. En móvil / sin soporte webm / reduced-motion se usa
-        la imagen estática con Ken Burns (menos datos y CPU en pantallas táctiles).
+        y los reproduce en ping-pong. En móvil el video corre en bucle ligero (sin captura,
+        menos RAM); sin soporte webm / autoplay bloqueado / reduced-motion se usa la imagen
+        estática con Ken Burns.
       -->
       <img class="hero-fallback" id="heroFallback"
            src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Baile_de_la_Cumbia_-_Barranquilla.jpg/1920px-Baile_de_la_Cumbia_-_Barranquilla.jpg"
@@ -78,6 +79,12 @@
       <h1 class="hero-title fade-item">ExpoAtlántico <span class="hero-year">2026</span></h1>
       <p class="hero-slogan fade-item">«Raíces inteligentes: conectando tradición, cultura e&nbsp;innovación para el futuro.»</p>
       <p class="hero-welcome fade-item">Bienvenidos a ExpoAtlántico 2026, una vitrina cultural que reúne las tradiciones, la gastronomía, las artesanías y las expresiones folclóricas más representativas de los municipios del Atlántico. Este evento busca fortalecer la identidad regional y brindar a los visitantes una experiencia cultural única.</p>
+      <div class="hero-cuenta fade-item" id="cuenta" role="timer" aria-label="Cuenta regresiva para el evento">
+        <div class="cuenta-item"><span class="cuenta-num mono" id="cDias">--</span><span class="cuenta-label">días</span></div>
+        <div class="cuenta-item"><span class="cuenta-num mono" id="cHoras">--</span><span class="cuenta-label">horas</span></div>
+        <div class="cuenta-item"><span class="cuenta-num mono" id="cMin">--</span><span class="cuenta-label">min</span></div>
+        <div class="cuenta-item"><span class="cuenta-num mono" id="cSeg">--</span><span class="cuenta-label">seg</span></div>
+      </div>
     </div>
 
     <div class="hero-bottom fade-item">
@@ -166,7 +173,7 @@
     <div class="wrap">
       <p class="eyebrow eyebrow--claro reveal">Municipios participantes</p>
       <h2 class="section-title section-title--claro reveal">La Ruta de la <em>Tradición</em></h2>
-      <p class="section-lede section-lede--claro reveal">Siete municipios, un solo recorrido: del mar a la sabana, cada parada exhibirá sus artesanías, su gastronomía, sus tradiciones y sus expresiones culturales. Toca cada punto de la ruta para descubrir qué trae a la vitrina.</p>
+      <p class="section-lede section-lede--claro reveal">Siete municipios, un solo recorrido del mar a la sabana. Cada municipio contará con un espacio donde se exhibirán sus artesanías, gastronomía, tradiciones y expresiones culturales. Toca cada punto de la ruta para descubrir qué trae a la vitrina.</p>
 
       <div class="ruta-layout">
         <div class="ruta-mapa reveal" id="rutaMapa">
@@ -215,6 +222,7 @@
       <p class="eyebrow reveal">Programación · 15 de octubre de 2026</p>
       <h2 class="section-title reveal">Un día con <em>sabor</em> a Atlántico</h2>
       <p class="section-lede reveal">Todos los momentos ocurren en la Plaza de la Paz, Barranquilla. Entrada libre.</p>
+      <p class="prog-acciones reveal"><button class="btn btn-outline" id="btnCalendario" type="button">＋ Agregar a mi calendario</button></p>
 
       <ol class="timeline">
         <li class="tl-item reveal"><span class="tl-hora mono">8:30 a.m.</span><div class="tl-body"><h3>Registro de asistentes</h3></div></li>
@@ -245,8 +253,21 @@
         <li class="exp-card reveal"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 12 h24 v16 h-14 l-6 6 v-6 h-4 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M36 20 h4 v14 h-4 v5 l-5 -5 h-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></svg><h3>Conversatorios culturales</h3></li>
         <li class="exp-card reveal"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="16" width="36" height="18" rx="9" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M15 22 v6 M12 25 h6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="31" cy="23" r="1.8" fill="currentColor"/><circle cx="36" cy="27" r="1.8" fill="currentColor"/></svg><h3>Zona interactiva: juegos y talleres</h3></li>
         <li class="exp-card reveal"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 42 C24 42 9 28 9 18 a15 15 0 0 1 30 0 C39 28 24 42 24 42 Z" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="24" cy="18" r="5" fill="none" stroke="currentColor" stroke-width="2.4"/></svg><h3>Charlas turísticas</h3></li>
-        <li class="exp-card reveal"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 8 h22 a6 6 0 0 1 6 6 v26 H16 a6 6 0 0 1 -6 -6 Z" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M38 34 H16 a6 6 0 0 0 -6 6 M17 16 h14 M17 23 h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><h3>Historia y tradiciones del Atlántico</h3></li>
+        <li class="exp-card reveal"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 8 h22 a6 6 0 0 1 6 6 v26 H16 a6 6 0 0 1 -6 -6 Z" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M38 34 H16 a6 6 0 0 0 -6 6 M17 16 h14 M17 23 h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><h3>Espacios para conocer la historia y las tradiciones del Atlántico</h3></li>
       </ul>
+    </div>
+  </section>
+
+  <!-- ══════════ REGISTRO ══════════ -->
+  <section class="section-registro" aria-labelledby="registroTitulo">
+    <div class="wrap">
+      <div class="registro-banda reveal">
+        <div>
+          <h2 id="registroTitulo">¿Nos acompañas el 15 de octubre?</h2>
+          <p>Regístrate y ayúdanos a preparar la logística de la vitrina: así sabremos cuántos visitantes recibiremos. Toma menos de un minuto.</p>
+        </div>
+        <a class="btn btn-crema" id="btnRegistro" href="#">Registrarme</a>
+      </div>
     </div>
   </section>
 
@@ -277,6 +298,24 @@
     </div>
   </section>
 
+  <!-- ══════════ EL EQUIPO ══════════ -->
+  <section class="section section-equipo" aria-labelledby="equipoTitulo">
+    <div class="wrap">
+      <p class="eyebrow reveal">El equipo</p>
+      <h2 class="section-title reveal" id="equipoTitulo">Aprendices que hacen la <em>vitrina</em></h2>
+      <p class="section-lede reveal">ExpoAtlántico es un proyecto formativo: cada área está liderada por aprendices del SENA que desarrollan aquí sus competencias en gestión cultural y organización de eventos.</p>
+      <!-- Reemplazar cada "[Nombre del aprendiz]" por los nombres reales del equipo -->
+      <ul class="equipo-grid reveal-group">
+        <li class="persona reveal"><span class="persona-avatar" aria-hidden="true">CG</span><h3>Coordinación general</h3><p class="persona-nombre mono">[Nombre del aprendiz]</p></li>
+        <li class="persona reveal"><span class="persona-avatar" aria-hidden="true">IC</span><h3>Investigación cultural</h3><p class="persona-nombre mono">[Nombre del aprendiz]</p></li>
+        <li class="persona reveal"><span class="persona-avatar" aria-hidden="true">GA</span><h3>Recursos y alianzas</h3><p class="persona-nombre mono">[Nombre del aprendiz]</p></li>
+        <li class="persona reveal"><span class="persona-avatar" aria-hidden="true">LG</span><h3>Logística</h3><p class="persona-nombre mono">[Nombre del aprendiz]</p></li>
+        <li class="persona reveal"><span class="persona-avatar" aria-hidden="true">RP</span><h3>Relaciones públicas</h3><p class="persona-nombre mono">[Nombre del aprendiz]</p></li>
+        <li class="persona reveal"><span class="persona-avatar" aria-hidden="true">CP</span><h3>Comunicación y promoción</h3><p class="persona-nombre mono">[Nombre del aprendiz]</p></li>
+      </ul>
+    </div>
+  </section>
+
   <!-- ══════════ ALIADOS ══════════ -->
   <section class="section section-aliados" aria-labelledby="aliadosTitulo">
     <div class="wrap">
@@ -296,6 +335,21 @@
     </div>
   </section>
 
+  <!-- ══════════ PREGUNTAS FRECUENTES ══════════ -->
+  <section class="section section-faq" aria-labelledby="faqTitulo">
+    <div class="wrap">
+      <p class="eyebrow reveal">Preguntas frecuentes</p>
+      <h2 class="section-title reveal" id="faqTitulo">Antes de <em>venir</em></h2>
+      <div class="faq-lista reveal-group">
+        <details class="faq-item reveal"><summary>¿La entrada tiene costo?</summary><p>No, la entrada es libre para toda la comunidad.</p></details>
+        <details class="faq-item reveal"><summary>¿Dónde y a qué hora es el evento?</summary><p>El 15 de octubre de 2026 en la Plaza de la Paz de Barranquilla, frente a la Catedral Metropolitana. El registro de asistentes abre a las 8:30 a.m. y el cierre es a las 3:50 p.m.</p></details>
+        <details class="faq-item reveal"><summary>¿Cómo llego a la Plaza de la Paz?</summary><p>La plaza está en pleno centro de Barranquilla y se llega fácil en rutas urbanas, taxi o aplicaciones de transporte. El botón «Cómo llegar» de la sección Contacto abre la ubicación exacta en Google Maps.</p></details>
+        <details class="faq-item reveal"><summary>¿Puedo venir con niños?</summary><p>¡Claro! La zona interactiva tiene juegos, talleres y rumba terapia pensados para disfrutar en familia.</p></details>
+        <details class="faq-item reveal"><summary>¿El espacio es accesible?</summary><p>Sí: la Plaza de la Paz es un espacio público abierto y plano, apto para sillas de ruedas y coches de bebé.</p></details>
+      </div>
+    </div>
+  </section>
+
   <!-- ══════════ CONTACTO ══════════ -->
   <section class="section section-contacto" id="contacto">
     <div class="wrap">
@@ -308,7 +362,7 @@
           <ul class="contacto-lista">
             <li>
               <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="12" width="36" height="26" rx="4" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M8 15 L24 27 L40 15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <a id="contactoEmail" href="#">expoatlantico2026@gmail.com</a>
+              <a data-email href="#">expoatlantico2026@gmail.com</a>
             </li>
             <li>
               <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="10" width="28" height="28" rx="8" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="24" cy="24" r="7" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="33" cy="15" r="2" fill="currentColor"/></svg>
@@ -317,6 +371,10 @@
             <li>
               <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="17" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M28 15 h-4 a5 5 0 0 0 -5 5 v21 M16 25 h11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
               <span>ExpoAtlántico 2026</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 42 C24 42 9 28 9 18 a15 15 0 0 1 30 0 C39 28 24 42 24 42 Z" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="24" cy="18" r="5" fill="none" stroke="currentColor" stroke-width="2.4"/></svg>
+              <span>Plaza de la Paz, Barranquilla, Atlántico</span>
             </li>
           </ul>
           <a class="btn btn-solid" href="https://www.google.com/maps/search/?api=1&query=Plaza+de+la+Paz+Barranquilla" target="_blank" rel="noopener">Cómo llegar</a>
@@ -333,12 +391,63 @@
   </main>
 
   <footer class="footer">
+    <div class="wrap footer-grid">
+      <div class="footer-col">
+        <p class="footer-marca">ExpoAtlántico <em>2026</em> · Vitrina Cultural</p>
+        <p class="footer-slogan">«Raíces inteligentes: conectando tradición, cultura e innovación para el futuro.»</p>
+        <p class="footer-dato mono">15 de octubre de 2026 · 8:30 a.m.<br>Plaza de la Paz, Barranquilla</p>
+      </div>
+      <nav class="footer-col" aria-label="Mapa del sitio">
+        <h3>Secciones</h3>
+        <ul class="footer-secciones">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#evento">Evento</a></li>
+          <li><a href="#municipios">Municipios</a></li>
+          <li><a href="#programacion">Programación</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h3>Contacto directo</h3>
+        <ul class="footer-redes">
+          <li>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="12" width="36" height="26" rx="4" fill="none" stroke="currentColor" stroke-width="2.8"/><path d="M8 15 L24 27 L40 15" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <a data-email href="#">expoatlantico2026@gmail.com</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="10" width="28" height="28" rx="8" fill="none" stroke="currentColor" stroke-width="2.8"/><circle cx="24" cy="24" r="7" fill="none" stroke="currentColor" stroke-width="2.8"/><circle cx="33" cy="15" r="2.2" fill="currentColor"/></svg>
+            <a href="https://instagram.com/expoatlantico2026" target="_blank" rel="noopener">@expoatlantico2026</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="17" fill="none" stroke="currentColor" stroke-width="2.8"/><path d="M28 15 h-4 a5 5 0 0 0 -5 5 v21 M16 25 h11" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></svg>
+            <span>ExpoAtlántico 2026</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 42 C24 42 9 28 9 18 a15 15 0 0 1 30 0 C39 28 24 42 24 42 Z" fill="none" stroke="currentColor" stroke-width="2.8"/><circle cx="24" cy="18" r="5" fill="none" stroke="currentColor" stroke-width="2.8"/></svg>
+            <a href="https://www.google.com/maps/search/?api=1&query=Plaza+de+la+Paz+Barranquilla" target="_blank" rel="noopener">Plaza de la Paz, Barranquilla</a>
+          </li>
+        </ul>
+      </div>
+    </div>
     <div class="wrap footer-inner">
-      <p class="footer-marca">ExpoAtlántico <em>2026</em> · Vitrina Cultural</p>
-      <p class="footer-slogan">«Raíces inteligentes: conectando tradición, cultura e innovación para el futuro.»</p>
       <p class="footer-legal mono">Proyecto formativo del SENA · © 2026 · Fotografías y video: Wikimedia Commons (CC BY / CC BY-SA)</p>
     </div>
   </footer>
+
+  <!-- Visor de fotografías (lightbox de la galería) -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visor de fotografías" hidden>
+    <button class="lb-btn lb-cerrar" id="lbCerrar" aria-label="Cerrar visor" type="button">✕</button>
+    <button class="lb-btn lb-prev" id="lbPrev" aria-label="Foto anterior" type="button">‹</button>
+    <img id="lbImg" src="" alt="">
+    <p class="lb-caption" id="lbCaption"></p>
+    <button class="lb-btn lb-next" id="lbNext" aria-label="Foto siguiente" type="button">›</button>
+  </div>
+
+  <!-- Compartir por WhatsApp -->
+  <a class="wa-float" id="waShare" href="#" target="_blank" rel="noopener" aria-label="Compartir el evento por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>
+  </a>
 
   <script src="js/hero.js" defer></script>
   <script src="js/main.js" defer></script>

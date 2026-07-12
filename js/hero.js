@@ -5,11 +5,13 @@
    2) Parallax sutil del fondo siguiendo el mouse (lerp, máx ~20px).
    3) Fade-in escalonado de entrada.
 
-   Decisión técnica: en móvil / pantallas táctiles se usa la imagen
-   estática con Ken Burns en lugar del video — capturar ~110 frames
-   consume RAM y datos que en un teléfono no se justifican, y el
-   parallax por mouse no existe en táctil. También aplica si el
-   navegador no reproduce WebM o si el usuario pide reduced-motion.
+   Decisión técnica: en móvil / pantallas táctiles el video se
+   reproduce en MODO LIGERO (bucle de los primeros segundos, sin
+   captura de frames) — capturar ~110 frames a canvas consume una
+   RAM que en un teléfono no se justifica, y el parallax por mouse
+   no existe en táctil. La imagen estática con Ken Burns queda como
+   fallback si el navegador no reproduce WebM, si el autoplay está
+   bloqueado (ahorro de batería) o si el usuario pide reduced-motion.
    ═══════════════════════════════════════════════════════════════ */
 (function () {
   "use strict";
@@ -43,11 +45,39 @@
   var soportaWebm = !!video.canPlayType &&
     video.canPlayType('video/webm; codecs="vp9"') !== "";
 
-  if (reduced || esTactil || esMovil || !soportaWebm) {
+  if (reduced || !soportaWebm) {
     media.classList.add(reduced ? "estatico" : "kenburns");
     video.remove();
     canvas.remove();
-    iniciarParallax(); // en táctil no hará nada (no hay mousemove)
+    iniciarParallax(); // con reduced-motion no hará nada
+    return;
+  }
+
+  /* ── Móvil / táctil: video en bucle ligero (sin boomerang) ── */
+  if (esTactil || esMovil) {
+    canvas.remove();
+    var LOOP_FIN = 12; // segundos del bucle: no descarga el video completo
+
+    var fallbackMovil = function () {
+      media.classList.add("kenburns");
+      video.classList.remove("is-on");
+      video.remove();
+    };
+
+    video.src = VIDEO_URL;
+    video.preload = "auto";
+    video.addEventListener("timeupdate", function () {
+      if (video.currentTime >= LOOP_FIN) video.currentTime = 0.05;
+    });
+    video.addEventListener("ended", function () { // por si dura menos que el bucle
+      video.currentTime = 0.05;
+      video.play().catch(fallbackMovil);
+    });
+    video.addEventListener("playing", function () {
+      video.classList.add("is-on");
+    }, { once: true });
+    video.addEventListener("error", fallbackMovil);
+    video.play().catch(fallbackMovil); // autoplay bloqueado → foto Ken Burns
     return;
   }
 
