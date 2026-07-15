@@ -80,12 +80,15 @@ main, header, footer, .marquee { position: relative; z-index: 1; }
 
 /* ═══════════ NAV LIQUID GLASS ═══════════ */
 .nav-pill {
-  position: fixed; top: 14px; left: 50%;
-  transform: translateX(-50%);
+  /* Centrado con márgenes automáticos: con left:50% el ancho automático
+     se limitaba a media pantalla y los enlaces se salían de la pill */
+  position: fixed; top: 14px; left: 0; right: 0;
+  margin: 0 auto;
+  width: fit-content;
   z-index: 100;
-  display: flex; align-items: center; gap: .4rem;
+  display: flex; align-items: center; gap: .8rem;
   max-width: calc(100vw - 24px);
-  padding: .45rem .6rem .45rem .85rem;
+  padding: .55rem 1rem .55rem 1.05rem;
   border-radius: 999px;
   background: rgba(36, 23, 18, .42);
   -webkit-backdrop-filter: blur(18px) saturate(1.5);
@@ -116,9 +119,10 @@ main, header, footer, .marquee { position: relative; z-index: 1; }
 }
 
 .nav-brand {
-  display: flex; align-items: center; gap: .5rem;
+  display: flex; align-items: center; gap: .6rem;
+  flex: none; /* la marca nunca se encoge ni deja que los enlaces la pisen */
   font-family: var(--f-display); font-weight: 600;
-  font-size: .95rem; white-space: nowrap;
+  font-size: 1.04rem; white-space: nowrap;
 }
 .nav-brand em { font-style: normal; color: var(--dorado); }
 .nav-brand-sun { width: 22px; height: 22px; flex: none; }
@@ -126,9 +130,9 @@ main, header, footer, .marquee { position: relative; z-index: 1; }
 .nav-links { display: flex; align-items: center; gap: .1rem; }
 .nav-links a {
   display: block;
-  padding: .42rem .78rem;
+  padding: .5rem .85rem;
   border-radius: 999px;
-  font-size: .86rem; font-weight: 500;
+  font-size: .9rem; font-weight: 500;
   white-space: nowrap;
   transition: background var(--trans), color var(--trans);
 }
@@ -151,10 +155,12 @@ main, header, footer, .marquee { position: relative; z-index: 1; }
 .nav-pill.nav-abierto .nav-toggle span:nth-child(1) { top: 19px; transform: rotate(45deg); }
 .nav-pill.nav-abierto .nav-toggle span:nth-child(2) { top: 19px; transform: rotate(-45deg); }
 
-@media (max-width: 860px) {
+/* Con menos de 1200px los enlaces pasan al menú desplegable:
+   el modo inline solo existe cuando sobra espacio de verdad */
+@media (max-width: 1200px) {
   .nav-toggle { display: block; }
   .nav-links {
-    position: fixed; top: 72px; left: 50%;
+    position: fixed; top: 78px; left: 50%;
     transform: translateX(-50%) translateY(-12px);
     flex-direction: column; align-items: stretch; gap: .2rem;
     width: min(92vw, 340px);
@@ -852,7 +858,7 @@ body.hero-listo .hero-scrollcue { transition-delay: .8s; }
 .footer-legal { font-size: .68rem; letter-spacing: .06em; color: rgba(248, 241, 224, .45); margin-top: .6rem; }
 
 /* ═══════════ LOGO OFICIAL ═══════════ */
-.nav-brand-logo { height: 32px; width: auto; flex: none; }
+.nav-brand-logo { height: 38px; width: auto; flex: none; }
 .hero-logo {
   width: clamp(100px, 15vw, 156px);
   margin: 0 auto 1.1rem;
