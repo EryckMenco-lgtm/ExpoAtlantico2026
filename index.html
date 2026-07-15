@@ -23,7 +23,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,600&family=Work+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='42' fill='%23C81D2E'/%3E%3Ccircle cx='50' cy='50' r='16' fill='%23E8A628'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
 <body>
 
@@ -32,7 +32,7 @@
   <!-- ══════════ NAVEGACIÓN "LIQUID GLASS" ══════════ -->
   <nav class="nav-pill" id="navPill" aria-label="Navegación principal">
     <a href="#inicio" class="nav-brand" data-navlink>
-      <svg class="nav-brand-sun" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="42" fill="#C81D2E"/><circle cx="50" cy="50" r="16" fill="#E8A628"/></svg>
+      <img class="nav-brand-logo" src="assets/logo-emblema.png" alt="" aria-hidden="true">
       <span>ExpoAtlántico<em>·26</em></span>
     </a>
     <ul class="nav-links" id="navLinks">
@@ -54,9 +54,8 @@
       <!--
         Video CC BY 3.0 · "Traditional Dancing in Colombia - Cumbia" (Wikimedia Commons, autor: MrPiettu).
         Se reproduce como boomerang real: js/hero.js captura frames en un canvas offscreen
-        y los reproduce en ping-pong. En móvil el video corre en bucle ligero (sin captura,
-        menos RAM); sin soporte webm / autoplay bloqueado / reduced-motion se usa la imagen
-        estática con Ken Burns.
+        y los reproduce en ping-pong. En móvil se usa la fotografía con Ken Burns: el video
+        480p apaisado recortado a pantalla vertical pierde la escena y se ve borroso.
       -->
       <img class="hero-fallback" id="heroFallback"
            src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Baile_de_la_Cumbia_-_Barranquilla.jpg/1920px-Baile_de_la_Cumbia_-_Barranquilla.jpg"
@@ -75,8 +74,10 @@
     </div>
 
     <div class="hero-inner">
+      <img class="hero-logo fade-item" src="assets/logo-emblema.png"
+           alt="Logo de ExpoAtlántico: una mano sostiene un canasto de palma de iraca con una flor de cayena roja frente al mapa del Atlántico">
       <p class="hero-kicker fade-item"><span class="kicker-dot" aria-hidden="true"></span>Vitrina Cultural · Proyecto formativo SENA</p>
-      <h1 class="hero-title fade-item">ExpoAtlántico <span class="hero-year">2026</span></h1>
+      <h1 class="hero-title fade-item">Expo<span class="title-atlantico">Atlántico</span> <span class="hero-year">2026</span></h1>
       <p class="hero-slogan fade-item">«Raíces inteligentes: conectando tradición, cultura e&nbsp;innovación para el futuro.»</p>
       <p class="hero-welcome fade-item">Bienvenidos a ExpoAtlántico 2026, una vitrina cultural que reúne las tradiciones, la gastronomía, las artesanías y las expresiones folclóricas más representativas de los municipios del Atlántico. Este evento busca fortalecer la identidad regional y brindar a los visitantes una experiencia cultural única.</p>
       <div class="hero-cuenta fade-item" id="cuenta" role="timer" aria-label="Cuenta regresiva para el evento">
@@ -126,6 +127,9 @@
           <p>ExpoAtlántico 2026 es una vitrina cultural diseñada para resaltar la riqueza histórica, artística y tradicional de diferentes municipios del Atlántico.</p>
           <p>Durante el evento, los asistentes podrán disfrutar de exposiciones artesanales, presentaciones folclóricas, muestras gastronómicas, charlas turísticas y una zona interactiva que permitirá vivir de cerca la cultura del departamento.</p>
         </article>
+        <aside class="evento-logo reveal">
+          <img src="assets/logo-full.png" alt="Logo oficial de ExpoAtlántico — Tradición que se transforma en Arte" loading="lazy">
+        </aside>
       </div>
 
       <div class="stats reveal" aria-label="Cifras del evento">
@@ -393,7 +397,9 @@
   <footer class="footer">
     <div class="wrap footer-grid">
       <div class="footer-col">
+        <img class="footer-logo" src="assets/logo-emblema.png" alt="" aria-hidden="true" loading="lazy">
         <p class="footer-marca">ExpoAtlántico <em>2026</em> · Vitrina Cultural</p>
+        <p class="footer-tagline">Tradición que se transforma en Arte</p>
         <p class="footer-slogan">«Raíces inteligentes: conectando tradición, cultura e innovación para el futuro.»</p>
         <p class="footer-dato mono">15 de octubre de 2026 · 8:30 a.m.<br>Plaza de la Paz, Barranquilla</p>
       </div>

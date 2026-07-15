@@ -5,13 +5,12 @@
    2) Parallax sutil del fondo siguiendo el mouse (lerp, máx ~20px).
    3) Fade-in escalonado de entrada.
 
-   Decisión técnica: en móvil / pantallas táctiles el video se
-   reproduce en MODO LIGERO (bucle de los primeros segundos, sin
-   captura de frames) — capturar ~110 frames a canvas consume una
-   RAM que en un teléfono no se justifica, y el parallax por mouse
-   no existe en táctil. La imagen estática con Ken Burns queda como
-   fallback si el navegador no reproduce WebM, si el autoplay está
-   bloqueado (ahorro de batería) o si el usuario pide reduced-motion.
+   Decisión técnica (acordada con el cliente): en móvil / táctil se
+   usa la FOTOGRAFÍA con Ken Burns, no el video. El video 480p es
+   apaisado: recortado a una pantalla vertical solo se ve ~25% del
+   encuadre (la escena central se pierde) y estirado queda borroso.
+   La foto 1920px sí conserva nitidez y encuadre. El video queda
+   exclusivo del hero en pantallas anchas.
    ═══════════════════════════════════════════════════════════════ */
 (function () {
   "use strict";
@@ -53,31 +52,11 @@
     return;
   }
 
-  /* ── Móvil / táctil: video en bucle ligero (sin boomerang) ── */
+  /* ── Móvil / táctil: fotografía con Ken Burns ── */
   if (esTactil || esMovil) {
+    video.remove();
     canvas.remove();
-    var LOOP_FIN = 12; // segundos del bucle: no descarga el video completo
-
-    var fallbackMovil = function () {
-      media.classList.add("kenburns");
-      video.classList.remove("is-on");
-      video.remove();
-    };
-
-    video.src = VIDEO_URL;
-    video.preload = "auto";
-    video.addEventListener("timeupdate", function () {
-      if (video.currentTime >= LOOP_FIN) video.currentTime = 0.05;
-    });
-    video.addEventListener("ended", function () { // por si dura menos que el bucle
-      video.currentTime = 0.05;
-      video.play().catch(fallbackMovil);
-    });
-    video.addEventListener("playing", function () {
-      video.classList.add("is-on");
-    }, { once: true });
-    video.addEventListener("error", fallbackMovil);
-    video.play().catch(fallbackMovil); // autoplay bloqueado → foto Ken Burns
+    media.classList.add("kenburns");
     return;
   }
 
