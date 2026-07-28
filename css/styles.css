@@ -552,15 +552,7 @@ body.hero-listo .hero-scrollcue { transition-delay: .8s; }
 }
 @keyframes trazo { to { stroke-dashoffset: 0; } }
 @keyframes guiones { to { stroke-dasharray: 2.6 2.2; } }
-.ruta-bq path { fill: var(--dorado); }
-.ruta-bq { animation: brillo-estrella 2.4s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
 @keyframes brillo-estrella { 0%,100% { opacity: 1; } 50% { opacity: .55; } }
-.ruta-bq-label {
-  font-family: var(--f-mono);
-  font-size: 2.6px;
-  fill: var(--dorado);
-  letter-spacing: .08em;
-}
 
 .ruta-nodo {
   position: absolute;
@@ -612,6 +604,33 @@ body.hero-listo .hero-scrollcue { transition-delay: .8s; }
 }
 .ruta-nodo[aria-pressed="true"] .nodo-nombre { color: var(--ceiba); background: var(--dorado); font-weight: 600; }
 
+/* Parada 08 · Barranquilla: la sede se marca con estrella en vez de punto */
+.ruta-nodo--sede .nodo-punto {
+  width: 30px; height: 30px;
+  background: none;
+  border: none;
+  box-shadow: none;
+  display: grid; place-items: center;
+}
+.ruta-nodo--sede .nodo-punto svg {
+  width: 100%; height: 100%;
+  fill: var(--dorado);
+  filter: drop-shadow(0 0 5px rgba(217, 162, 63, .55));
+  animation: brillo-estrella 2.4s ease-in-out infinite;
+  transition: fill var(--trans);
+}
+.ruta-nodo--sede .nodo-punto::after { inset: -5px; }
+.ruta-nodo--sede[aria-pressed="true"] .nodo-punto svg {
+  fill: var(--cayena);
+  filter: drop-shadow(0 0 8px rgba(229, 27, 35, .6));
+  animation: none;
+}
+/* La estrella está pegada al borde derecho del mapa: en pantallas
+   angostas se mete la etiqueta hacia dentro para que no se recorte */
+@media (max-width: 560px) {
+  .ruta-nodo--sede .nodo-nombre { transform: translateX(-1.1rem); }
+}
+
 /* Tarjeta glass del municipio (mismo lenguaje que la nav) */
 .glass-card {
   position: relative;
@@ -644,7 +663,38 @@ body.hero-listo .hero-scrollcue { transition-delay: .8s; }
   margin: .35rem 0 .6rem;
 }
 .ruta-card-dato { font-size: .92rem; font-weight: 300; color: rgba(248, 241, 224, .85); min-height: 4.2em; }
-.ruta-card-chips { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1rem; }
+
+/* Qué aporta el municipio a la vitrina */
+.ruta-card-trae-titulo {
+  margin-top: 1.25rem;
+  font-size: .66rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--cielo);
+}
+.ruta-card-trae {
+  margin-top: .6rem;
+  display: grid;
+  gap: .5rem;
+}
+.ruta-card-trae li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: .86rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: rgba(248, 241, 224, .9);
+}
+.ruta-card-trae li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: .52em;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--cayena);
+  box-shadow: 0 0 0 3px rgba(229, 27, 35, .18);
+}
+.ruta-card-chips { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.3rem; }
 .ruta-card-chips li {
   font-family: var(--f-mono); font-size: .68rem;
   letter-spacing: .04em;
@@ -716,7 +766,7 @@ body.hero-listo .hero-scrollcue { transition-delay: .8s; }
 .section-encontraras { background: var(--iraca-osc); }
 .encontraras-grid {
   display: grid; gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   margin-top: 3rem;
 }
 .exp-card {
@@ -734,6 +784,13 @@ body.hero-listo .hero-scrollcue { transition-delay: .8s; }
 .exp-card svg { width: 40px; height: 40px; color: var(--rojo); margin-bottom: .9rem; transition: color var(--trans), transform var(--trans); }
 .exp-card:hover svg { color: var(--verde); transform: scale(1.12) rotate(-4deg); }
 .exp-card h3 { font-family: var(--f-body); font-weight: 600; font-size: 1rem; line-height: 1.35; }
+.exp-card p {
+  margin-top: .6rem;
+  font-size: .88rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(36, 23, 18, .78);
+}
 
 /* ═══════════ GALERÍA ═══════════ */
 .section-galeria {
@@ -959,10 +1016,10 @@ body.hero-listo .hero-cuenta { transition-delay: .55s; }
 .btn-crema:hover { background: #fff; }
 .btn-crema[aria-disabled="true"] { opacity: .75; cursor: default; }
 
-/* ═══════════ EQUIPO ═══════════ */
+/* ═══════════ COMITÉS ORGANIZADORES ═══════════ */
 .equipo-grid {
   display: grid; gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   margin-top: 3rem;
 }
 .persona {
@@ -983,8 +1040,22 @@ body.hero-listo .hero-cuenta { transition-delay: .55s; }
   color: var(--iraca);
   font-family: var(--f-display); font-weight: 600; font-size: 1.35rem;
 }
-.persona h3 { font-size: .98rem; font-weight: 600; }
-.persona-nombre { font-size: .68rem; color: rgba(36, 23, 18, .5); margin-top: .35rem; letter-spacing: .04em; }
+.persona h3 { font-size: .98rem; font-weight: 600; line-height: 1.35; }
+.persona-funcion {
+  margin-top: .6rem;
+  font-size: .84rem;
+  font-weight: 300;
+  line-height: 1.55;
+  color: rgba(36, 23, 18, .75);
+}
+.persona-nombre {
+  font-size: .68rem;
+  color: rgba(36, 23, 18, .5);
+  margin-top: .8rem;
+  padding-top: .8rem;
+  border-top: 1px solid rgba(181, 101, 46, .25);
+  letter-spacing: .04em;
+}
 
 /* ═══════════ FAQ ═══════════ */
 .section-faq { background: var(--iraca-osc); }

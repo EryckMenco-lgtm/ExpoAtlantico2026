@@ -13,73 +13,137 @@
      REGISTRO_URL  : pegar el enlace del Google Form de registro
                      (mientras esté vacío, el botón dirá "muy pronto").
      SITE_URL      : URL pública de la página cuando se publique
-                     (se añade al mensaje de WhatsApp).              */
+                     (se añade al mensaje de WhatsApp).
+     SEDE_*        : sede del evento. SEDE_MAPS es lo que se busca en
+                     Google Maps: cuando llegue la dirección exacta,
+                     cambiarla aquí y en el iframe del index.        */
   var CONTACT_EMAIL = "expoatlantico2026@gmail.com";
   var REGISTRO_URL = "";
   var SITE_URL = "";
+  var SEDE_NOMBRE = "Plaza Mayor";
+  var SEDE_CIUDAD = "Barranquilla, Atlántico";
+  var SEDE_MAPS = "Plaza Mayor, Barranquilla, Atlántico";
 
   document.querySelectorAll("[data-email]").forEach(function (el) {
     el.textContent = CONTACT_EMAIL;
     el.href = "mailto:" + CONTACT_EMAIL;
   });
 
-  /* ══════════ DATOS REALES DE LOS MUNICIPIOS (verificados) ══════════ */
+  /* Enlaces "Cómo llegar" (se generan desde SEDE_MAPS) */
+  document.querySelectorAll("[data-maps]").forEach(function (el) {
+    el.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(SEDE_MAPS);
+  });
+
+  /* ══════════ MUNICIPIOS DE LA RUTA ══════════
+     dato  : identidad del municipio (hechos verificados).
+     trae  : QUÉ APORTA CADA MUNICIPIO A LA VITRINA — artesanía,
+             sabor y puesta en escena de su stand en la Galería.
+             Texto propuesto: reemplazar cuando el comité cultural
+             confirme la programación definitiva de cada espacio.   */
   var MUNICIPIOS = {
     "puerto-colombia": {
       orden: 1,
       nombre: "Puerto Colombia",
-      dato: "Su muelle de 1888 fue en su época uno de los más largos del mundo y la puerta de entrada de la inmigración a Colombia. Hoy es símbolo de la memoria portuaria y de las playas del Atlántico.",
-      chips: ["Muelle histórico", "Gastronomía de mar", "Playas de Pradomar y Salgar"],
+      dato: "Su muelle de 1888 fue en su época uno de los más largos del mundo y la puerta de entrada de la inmigración a Colombia.",
+      trae: [
+        "Memoria portuaria: fotografías, maquetas y relatos del muelle histórico",
+        "Cocina de mar: pescado frito, arroz de lisa y cocadas",
+        "Charla turística sobre las playas de Salgar y Pradomar"
+      ],
+      chips: ["Muelle histórico", "Sabor de mar", "Turismo de playa"],
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Atardecer_en_el_Muelle_de_Puerto_Colombia.JPG/1280px-Atardecer_en_el_Muelle_de_Puerto_Colombia.JPG",
       alt: "Atardecer sobre el muelle histórico de Puerto Colombia"
     },
     "tubara": {
       orden: 2,
       nombre: "Tubará",
-      dato: "Corazón del pueblo Mokaná, celebra el Festival de la Yuca y el Totumo en la Plaza de las Madres, y regala miradores con vista al mar Caribe.",
-      chips: ["Herencia Mokaná", "Festival de la Yuca y el Totumo", "Miradores al mar"],
+      dato: "Corazón del pueblo Mokaná, celebra el Festival de la Yuca y el Totumo y regala miradores con vista al mar Caribe.",
+      trae: [
+        "Artesanía Mokaná: totumo tallado y trabajo en fibras naturales",
+        "Los sabores de la yuca: bollo, enyucado y casabe",
+        "Danza y relato de la herencia Mokaná"
+      ],
+      chips: ["Herencia Mokaná", "Yuca y totumo", "Miradores al mar"],
       img: "https://upload.wikimedia.org/wikipedia/commons/7/75/MiradorTubar%C3%A1.jpg",
       alt: "Mirador de Tubará con vista hacia el mar Caribe"
     },
     "juan-de-acosta": {
       orden: 3,
       nombre: "Juan de Acosta",
-      dato: "Cuna del Festival Folclórico y Reinado Intermunicipal del Millo (más de 40 versiones): la flauta de millo, alma sonora del Carnaval, es su símbolo. Sus playas de Santa Verónica completan la parada.",
-      chips: ["Flauta de millo", "Festival del Millo", "Playas de Santa Verónica"],
+      dato: "Cuna del Festival Folclórico y Reinado Intermunicipal del Millo, con más de 40 versiones: la flauta de millo, alma sonora del Carnaval, es su símbolo.",
+      trae: [
+        "Flautas de millo y tambores hechos a mano, con sus constructores",
+        "Fritos y dulces de la plaza acosteña",
+        "Conjunto de millo en vivo: la cumbia como suena en su cuna"
+      ],
+      chips: ["Flauta de millo", "Música en vivo", "Playas de Santa Verónica"],
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Baile_de_la_Cumbia_-_Barranquilla.jpg/1920px-Baile_de_la_Cumbia_-_Barranquilla.jpg",
       alt: "Baile de cumbia, ritmo que acompaña la flauta de millo"
     },
     "piojo": {
       orden: 4,
       nombre: "Piojó",
-      dato: "El punto más alto del Atlántico: el Cerro La Vieja (~520 msnm) domina un bosque seco tropical ideal para el senderismo y el avistamiento de aves — aquí se celebra el Global Big Day.",
-      chips: ["Cerro La Vieja · 520 msnm", "Avistamiento de aves", "Bosque seco tropical"],
+      dato: "El punto más alto del Atlántico: el Cerro La Vieja (~520 msnm) domina un bosque seco tropical ideal para el senderismo y el avistamiento de aves.",
+      trae: [
+        "Rincón del bosque seco: semillas, madera y piezas de artesanos locales",
+        "Sabores de patio: dulces y refrescos de frutas nativas",
+        "Charla de ecoturismo: aves del Cerro La Vieja y senderismo"
+      ],
+      chips: ["Cerro La Vieja · 520 msnm", "Avistamiento de aves", "Ecoturismo"],
       img: "https://upload.wikimedia.org/wikipedia/commons/d/dc/PlayaTubaraAtlantico.jpg",
       alt: "Paisaje costero del Atlántico cercano a la serranía de Piojó"
     },
     "usiacuri": {
       orden: 5,
       nombre: "Usiacurí",
-      dato: "Capital artesanal del Atlántico: sus tejedoras convierten la palma de iraca en piezas únicas reconocidas en todo el país. También guarda la Casa Museo del poeta Julio Flórez y calles llenas de murales.",
-      chips: ["Tejido en palma de iraca", "Casa Museo Julio Flórez", "Murales"],
+      dato: "Capital artesanal del Atlántico: sus tejedoras convierten la palma de iraca en piezas reconocidas en todo el país. Guarda además la Casa Museo del poeta Julio Flórez.",
+      trae: [
+        "Tejido de palma de iraca en vivo: bolsos, sombreros e individuales",
+        "Dulces tradicionales y jugos de la plaza",
+        "Poesía de Julio Flórez y recorrido en imágenes por sus murales"
+      ],
+      chips: ["Palma de iraca", "Casa Museo Julio Flórez", "Murales"],
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Musa_Tejedora.jpg/1280px-Musa_Tejedora.jpg",
       alt: "Musa Tejedora, homenaje al tejido en palma de iraca de Usiacurí"
     },
     "baranoa": {
       orden: 6,
       nombre: "Baranoa",
-      dato: "Tierra de la Loa de los Reyes Magos, tradición teatral centenaria declarada patrimonio, y del Carnaval del Recuerdo, que con más de 35 versiones rescata la memoria festiva del departamento.",
-      chips: ["Loa de los Reyes Magos", "Carnaval del Recuerdo", "Memoria festiva"],
+      dato: "Tierra de la Loa de los Reyes Magos, tradición teatral centenaria, y del Carnaval del Recuerdo, que rescata la memoria festiva del departamento.",
+      trae: [
+        "Vestuario, coronas y utilería de la Loa de los Reyes Magos",
+        "Cocina de olla: sancocho de guandú y bollo limpio",
+        "Escena de la Loa y comparsas del Carnaval del Recuerdo"
+      ],
+      chips: ["Loa de los Reyes Magos", "Carnaval del Recuerdo", "Teatro popular"],
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Plaza_de_Baranoa.jpg/1280px-Plaza_de_Baranoa.jpg",
       alt: "Plaza principal de Baranoa con su iglesia de Santa Ana"
     },
     "galapa": {
       orden: 7,
       nombre: "Galapa",
-      dato: "Sus talladores convierten la madera de ceiba roja en las máscaras — toritos, marimondas — que dan rostro al Carnaval. Recibe cada año la Gran Parada Departamental del Folclor.",
+      dato: "Sus talladores convierten la madera de ceiba roja en las máscaras — toritos, marimondas — que dan rostro al Carnaval.",
+      trae: [
+        "Taller de talla en vivo: máscaras de ceiba roja frente al público",
+        "Fritos y dulces galaperos",
+        "Comparsa de toritos y marimondas del folclor galapero"
+      ],
       chips: ["Máscaras de ceiba roja", "Talla en madera", "Gran Parada del Folclor"],
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Mascarasgalapa.jpg/1280px-Mascarasgalapa.jpg",
       alt: "Máscaras de carnaval talladas en madera, artesanía de Galapa"
+    },
+    "barranquilla": {
+      orden: 8,
+      nombre: "Barranquilla",
+      dato: "Capital del Atlántico y anfitriona de la vitrina. Su Carnaval, declarado Patrimonio Cultural Inmaterial de la Humanidad por la Unesco, reúne las danzas y personajes que nacen en los municipios de la ruta.",
+      trae: [
+        "La Galería de la Plaza Mayor: sede que reúne las ocho vitrinas",
+        "Cocina barranquillera: arepa de huevo, carimañolas y raspao",
+        "Cierre con muestra folclórica: garabato, congo y marimonda"
+      ],
+      chips: ["Carnaval · Patrimonio de la Humanidad", "Capital del Atlántico", "Sede del evento"],
+      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Garabato_Carnaval_de_Barranquilla.jpg/1920px-Garabato_Carnaval_de_Barranquilla.jpg",
+      alt: "Danzante del Garabato con capa decorada en el Carnaval de Barranquilla"
     }
   };
 
@@ -90,7 +154,9 @@
   var cardOrden = document.getElementById("rutaCardOrden");
   var cardTitulo = document.getElementById("rutaCardTitulo");
   var cardDato = document.getElementById("rutaCardDato");
+  var cardTrae = document.getElementById("rutaCardTrae");
   var cardChips = document.getElementById("rutaCardChips");
+  var TOTAL_PARADAS = Object.keys(MUNICIPIOS).length;
 
   function pintarMunicipio(id) {
     var m = MUNICIPIOS[id];
@@ -99,9 +165,15 @@
     setTimeout(function () {
       cardImg.src = m.img;
       cardImg.alt = m.alt;
-      cardOrden.textContent = "Parada 0" + m.orden + " / 07 · Ruta de la Tradición";
+      cardOrden.textContent = "Parada 0" + m.orden + " / 0" + TOTAL_PARADAS + " · Ruta de la Tradición";
       cardTitulo.textContent = m.nombre;
       cardDato.textContent = m.dato;
+      cardTrae.innerHTML = "";
+      m.trae.forEach(function (t) {
+        var li = document.createElement("li");
+        li.textContent = t;
+        cardTrae.appendChild(li);
+      });
       cardChips.innerHTML = "";
       m.chips.forEach(function (c) {
         var li = document.createElement("li");
@@ -251,7 +323,7 @@
       var diff = FECHA_EVENTO - Date.now();
       if (diff <= 0) {
         clearInterval(intv);
-        cuenta.innerHTML = '<p class="cuenta-hoy">¡Hoy es el gran día! Nos vemos en la Plaza de la Paz.</p>';
+        cuenta.innerHTML = '<p class="cuenta-hoy">¡Hoy es el gran día! Nos vemos en la ' + SEDE_NOMBRE + '.</p>';
         return;
       }
       var s = Math.floor(diff / 1000);
@@ -277,8 +349,8 @@
         "DTSTART:20261015T133000Z",
         "DTEND:20261015T210000Z",
         "SUMMARY:ExpoAtlántico 2026 – Vitrina Cultural",
-        "LOCATION:Plaza de la Paz\\, Barranquilla\\, Atlántico",
-        "DESCRIPTION:Raíces inteligentes: conectando tradición\\, cultura e innovación para el futuro. Registro desde las 8:30 a.m. Entrada libre.",
+        "LOCATION:" + SEDE_NOMBRE + "\\, " + SEDE_CIUDAD.replace(", ", "\\, "),
+        "DESCRIPTION:Raíces inteligentes: conectando tradición\\, cultura e innovación para el futuro. Registro de asistentes desde las 8:30 a.m.",
         "END:VEVENT",
         "END:VCALENDAR"
       ].join("\r\n");
@@ -311,9 +383,9 @@
   if (wa) {
     var waTxt = "🎭 ExpoAtlántico 2026 – Vitrina Cultural\n" +
       "📅 15 de octubre de 2026 · desde las 8:30 a.m.\n" +
-      "📍 Plaza de la Paz, Barranquilla\n" +
+      "📍 " + SEDE_NOMBRE + ", " + SEDE_CIUDAD + "\n" +
       "«Raíces inteligentes: conectando tradición, cultura e innovación para el futuro.»\n" +
-      "¡Acompáñanos! Entrada libre." +
+      "¡Acompáñanos! Ocho municipios del Atlántico en una sola vitrina." +
       (SITE_URL ? "\n" + SITE_URL : "");
     wa.href = "https://wa.me/?text=" + encodeURIComponent(waTxt);
   }
